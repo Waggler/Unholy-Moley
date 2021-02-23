@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Flashlight : MonoBehaviour
 {
+
+    [Header("LightSetting")]
     public GameObject sLight;
+    public bool lightActive;
+
+    [Header("Audio")]
     public AudioSource aSource;
     public AudioClip on;
     public AudioClip off;
 
-    public bool lightActive;
-
+    
 
     // Flashlight ain't on at start
     void Start()
