@@ -7,11 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class PauseScript : MonoBehaviour
 {
+    [Header("Audio")]
     public AudioSource aSource;
     public AudioClip button;
 
+    [Header("Bool")]
     public static bool gamePaused = false;
 
+    [Header("GameObjects")]
     public GameObject pauseMenu;
     public GameObject flashlightLight;
 

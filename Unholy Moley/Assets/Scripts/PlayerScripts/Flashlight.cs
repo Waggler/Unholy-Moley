@@ -20,12 +20,13 @@ public class Flashlight : MonoBehaviour
     void Start()
     {
         sLight.SetActive(false);
+        
     }
 
     // Press F to turn on the flashlight
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && PauseScript.gamePaused == false)
         {
             lightActive = !lightActive;
 

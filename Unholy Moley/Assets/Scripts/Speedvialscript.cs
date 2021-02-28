@@ -4,31 +4,41 @@ using UnityEngine;
 
 public class Speedvialscript : MonoBehaviour
 {
+    // Speed Boost Stats
     [Header("Stat Increase")]
-
     public float boostAmount = 1.5f;
+    public float duration = 3f;
 
-    [Header("Outside Objects")]
-
+    /* Particle Effect Variable
+     * [Header("Outside Objects")]
     public GameObject vialCloud;
+    */
 
     // Checks whether the player comes in contact
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Boost(other);
+            StartCoroutine (Boost(other));
         }
     }
 
     // I am SPEED
-    void Boost(Collider player)
+    IEnumerator Boost(Collider player)
     {
-        Instantiate(vialCloud, transform.position, transform.rotation);
+        //Instantiate(vialCloud, transform.position, transform.rotation);
 
-        
+        PlayerMovement stats = player.GetComponent<PlayerMovement>();// Get the Player's Speed
+        stats.speed *= boostAmount;// Boost speed by boost amount
 
-        Destroy(gameObject);
+        GetComponent<MeshRenderer>().enabled = false;// Turns off Collider and Mesh Render
+        GetComponent<Collider>().enabled = false;
+
+        yield return new WaitForSeconds(duration);// Waits for Duration
+
+        stats.speed /= boostAmount;// Revert boosted speed
+
+        Destroy(gameObject);// Destroy Speedboost vial
     }
 
 }
