@@ -8,6 +8,7 @@ public class Speedvialscript : MonoBehaviour
     [Header("Stat Increase")]
     public float boostAmount = 1.5f;
     public float duration = 3f;
+    public float vialCount = 0f;
 
     /* Particle Effect Variable
      * [Header("Outside Objects")]
@@ -19,12 +20,16 @@ public class Speedvialscript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            StartCoroutine (Boost(other));
+            //vialCount += 1;
+            Destroy(gameObject);
+            //StartCoroutine (Boost(other));
         }
     }
 
     // I am SPEED
-    IEnumerator Boost(Collider player)
+
+    /*Boost on Touch
+     * IEnumerator Boost(Collider player)
     {
         //Instantiate(vialCloud, transform.position, transform.rotation);
 
@@ -39,6 +44,6 @@ public class Speedvialscript : MonoBehaviour
         stats.speed /= boostAmount;// Revert boosted speed
 
         Destroy(gameObject);// Destroy Speedboost vial
-    }
+    }*/
 
 }
