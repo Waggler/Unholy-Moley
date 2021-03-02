@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Shootable
   - Vial
+  - Killbox
+  - GunPickup
   layers:
   - Default
   - TransparentFX
