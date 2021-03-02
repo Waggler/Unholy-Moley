@@ -39,6 +39,7 @@ public class PauseScript : MonoBehaviour
     // Play da game
     public void Resume()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         gamePaused = false;
@@ -50,6 +51,7 @@ public class PauseScript : MonoBehaviour
     // Pause da game
     void Pause()
     {
+        Cursor.lockState = CursorLockMode.Confined;
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         gamePaused = true;
