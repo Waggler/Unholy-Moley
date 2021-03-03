@@ -8,8 +8,11 @@ public class MoleScript : MonoBehaviour
 
     [Header("ChasingPlayer")]
     public float lookRadius = 10f;
-    Transform target;
-    NavMeshAgent agent;
+    public float huntRadius = 60f;
+    public bool isHunting = false;
+    public bool isPlayerSafe;
+    private Transform target;
+    private NavMeshAgent agent;
 
     public bool isStunned;
     public bool hasBeenStunned = false;
@@ -32,9 +35,10 @@ public class MoleScript : MonoBehaviour
     private IEnumerator stunRoutine;
     private IEnumerator waitRoutine;
 
-    Animator animator;
+    public Animator animator;
 
     public GameObject killBox;
+    public GameObject Player;
 
     // Start is called before the first frame update
     void Start()
@@ -54,11 +58,13 @@ public class MoleScript : MonoBehaviour
         GotoNextPoint();
     }//end Start
 
+
     // Update is called once per frame
     void Update()
     {
         float distance = Vector3.Distance(target.position, transform.position);
         isStunned = GetComponent<Target>().stun;
+        isPlayerSafe = Player.GetComponent<KillBox>().isSafe;
         stunRoutine = Stunned();
         if (isStunned == true)
         {
@@ -71,15 +77,25 @@ public class MoleScript : MonoBehaviour
             agentAnimator.SetFloat("Speed", 0f);//make anim move
             movementActive = false;
         }*/
-        if (distance <= lookRadius)
+        if (distance <= lookRadius && isHunting == false && isPlayerSafe == false)
+        {
+            agent.SetDestination(target.position);
+            isHunting = true;
+
+            if (distance <= agent.stoppingDistance)
+            {
+                FaceTarget();
+            }
+        }
+        else if (distance <= huntRadius && isHunting == true && isPlayerSafe == false)
         {
             agent.SetDestination(target.position);
 
             if (distance <= agent.stoppingDistance)
             {
                 FaceTarget();
-            }//end if
-        }//end if
+            }
+        }
         else
         {
             if (!agent.pathPending && agent.remainingDistance < 5f)
@@ -89,8 +105,9 @@ public class MoleScript : MonoBehaviour
                 GotoNextPoint();
             }
                 
-        }//end else
-    }//end Update
+        }
+    } // END Update
+
 
     //This method tells the Mole to travel to the next Waypoint
     void GotoNextPoint()

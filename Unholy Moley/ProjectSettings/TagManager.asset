@@ -8,6 +8,8 @@ TagManager:
   - Vial
   - GunPickup
   - Killbox
+  - SafeZone
+  - DangerZone
   layers:
   - Default
   - TransparentFX
