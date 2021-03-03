@@ -14,21 +14,24 @@ public class MoleScript : MonoBehaviour
     public bool isStunned;
     public float stunDuration;
 
-    [Header("PatrollingRandom")]
-    //PatrollingWaypoints
+    [Header("PatrollingWaypoints")]
     public LayerMask whatIsGround;
     public Transform[] points;
     private int destPoint = 0;
+    public float waitDuration;
 
     [Header("PatrollingRandom")]
-    private Transform[] patrolPoints;
     public Vector3 walkPoint;
     public bool walkPointSet = false;
     public float walkPointRange;
     public int numPatrolPoints;
+    private Transform[] patrolPoints;
 
     private float startSpeed;
-    private IEnumerator coRoutine;
+    private IEnumerator stunRoutine;
+    private IEnumerator waitRoutine;
+
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +39,9 @@ public class MoleScript : MonoBehaviour
         target = PlayerManager.instance.Player.transform;
         patrolPoints = new Transform[numPatrolPoints];
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
         startSpeed = agent.speed;
+        animator.SetBool("IsMoving", true);
 
         // Disabling auto-braking allows for continuous movement
         // between points (ie, the agent doesn't slow down as it
@@ -51,11 +56,17 @@ public class MoleScript : MonoBehaviour
     {
         float distance = Vector3.Distance(target.position, transform.position);
         isStunned = GetComponent<Target>().stun;
-        coRoutine = Stunned();
+        stunRoutine = Stunned();
         if (isStunned == true)
         {
-            StartCoroutine(coRoutine);
+            StartCoroutine(stunRoutine);
+
         }
+        /*if (lastDist == dist && agent.velocity.x == 0 && agent.velocity.z == 0)
+        {
+            agentAnimator.SetFloat("Speed", 0f);//make anim move
+            movementActive = false;
+        }*/
         if (distance <= lookRadius)
         {
             agent.SetDestination(target.position);
@@ -68,7 +79,12 @@ public class MoleScript : MonoBehaviour
         else
         {
             if (!agent.pathPending && agent.remainingDistance < 5f)
+            {
+                waitRoutine = Wait();
+                StartCoroutine(waitRoutine);
                 GotoNextPoint();
+            }
+                
         }//end else
     }//end Update
 
@@ -134,9 +150,18 @@ public class MoleScript : MonoBehaviour
     IEnumerator Stunned()
     {
         agent.speed = 0f;
+        animator.SetBool("Stunned", true);
         yield return new WaitForSeconds(stunDuration);// Waits for Duration
+        animator.SetBool("Stunned", false);
         agent.speed = startSpeed;
         isStunned = false;
+    }
+
+    IEnumerator Wait()
+    {
+        //animator.SetBool("IsMoving", false);
+        yield return new WaitForSeconds(waitDuration);// Waits for Duration
+        animator.SetBool("IsMoving", true);
     }
 
 

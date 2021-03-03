@@ -3061,7 +3061,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  range: 100
+  range: 50
   impactForce: 30
   fireRate: 15
   fpsCam: {fileID: 963194227}
@@ -3533,7 +3533,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1084792727}
   - component: {fileID: 1084792724}
-  - component: {fileID: 1084792722}
   - component: {fileID: 1084792723}
   - component: {fileID: 1084792725}
   - component: {fileID: 1084792726}
@@ -3544,20 +3543,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
   m_IsActive: 1
---- !u!136 &1084792722
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1084792721}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &1084792723
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3618,6 +3603,7 @@ MonoBehaviour:
   - {fileID: 897706540}
   - {fileID: 583666629}
   - {fileID: 524637014}
+  waitDuration: 0
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
   walkPointRange: 10
