@@ -9,7 +9,7 @@ public class EndScript : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene(0);
     }
 
     public void QuitGame()

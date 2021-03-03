@@ -393,7 +393,8 @@ MonoBehaviour:
   m_text: Main Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ec91bb58809455a40be80af95eae8462, type: 2}
-  m_sharedMaterial: {fileID: 1605067691425626200, guid: ec91bb58809455a40be80af95eae8462, type: 2}
+  m_sharedMaterial: {fileID: 1605067691425626200, guid: ec91bb58809455a40be80af95eae8462,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -669,7 +670,8 @@ MonoBehaviour:
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 3fea74aafbf4da147abd5524c4ef1ec8, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: 3fea74aafbf4da147abd5524c4ef1ec8,
+            type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -774,7 +776,8 @@ MonoBehaviour:
   m_text: EXIT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ec91bb58809455a40be80af95eae8462, type: 2}
-  m_sharedMaterial: {fileID: 1605067691425626200, guid: ec91bb58809455a40be80af95eae8462, type: 2}
+  m_sharedMaterial: {fileID: 1605067691425626200, guid: ec91bb58809455a40be80af95eae8462,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1083,7 +1086,8 @@ MonoBehaviour:
   m_text: Objective Complete
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ec91bb58809455a40be80af95eae8462, type: 2}
-  m_sharedMaterial: {fileID: 1605067691425626200, guid: ec91bb58809455a40be80af95eae8462, type: 2}
+  m_sharedMaterial: {fileID: 1605067691425626200, guid: ec91bb58809455a40be80af95eae8462,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1169,6 +1173,7 @@ GameObject:
   - component: {fileID: 1676055586}
   - component: {fileID: 1676055585}
   - component: {fileID: 1676055584}
+  - component: {fileID: 1676055587}
   m_Layer: 5
   m_Name: EXIT
   m_TagString: Untagged
@@ -1256,7 +1261,8 @@ MonoBehaviour:
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 3fea74aafbf4da147abd5524c4ef1ec8, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: 3fea74aafbf4da147abd5524c4ef1ec8,
+            type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1301,3 +1307,15 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676055582}
   m_CullTransparentMesh: 0
+--- !u!114 &1676055587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676055582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 568230878e028d04a9e1678fc8565214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
