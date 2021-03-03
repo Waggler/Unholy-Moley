@@ -11,7 +11,6 @@ public class KillBox : MonoBehaviour
         if (other.CompareTag("Killbox"))
         {
             SceneManager.LoadScene("Lose Screen");
-            gameObject.SetActive(false);
         }
         if (other.CompareTag("GunPickup"))
         {
