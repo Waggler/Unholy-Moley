@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class KillBox : MonoBehaviour
 {
     public GameObject Gun;
+
+    public bool hasGun;
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Killbox"))
@@ -15,6 +17,7 @@ public class KillBox : MonoBehaviour
         if (other.CompareTag("GunPickup"))
         {
             Gun.SetActive(true);
+            hasGun = true;
         }
     }
 }

@@ -14,6 +14,10 @@ public class Flashlight : MonoBehaviour
     public AudioClip on;
     public AudioClip off;
 
+    public bool equipGun;
+
+    public GameObject killBox;
+
     
 
     // Flashlight ain't on at start
@@ -26,18 +30,26 @@ public class Flashlight : MonoBehaviour
     // Press F to turn on the flashlight
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && PauseScript.gamePaused == false)
+        equipGun = killBox.GetComponent<KillBox>().hasGun;
+        if (equipGun == true && PauseScript.gamePaused == false)
+        {
+            lightActive = false;
+            FlashlightOn();
+        }
+        else if (Input.GetKeyDown(KeyCode.F) && PauseScript.gamePaused == false)
         {
             lightActive = !lightActive;
 
             if (lightActive)
             {
                 FlashlightOn();
+                aSource.PlayOneShot(on);
             }
 
             if (!lightActive)
             {
                 FlashlightOff();
+                aSource.PlayOneShot(off);
             }
         }
     }
@@ -46,13 +58,11 @@ public class Flashlight : MonoBehaviour
     void FlashlightOn()
     {
         sLight.SetActive(true);
-        aSource.PlayOneShot(on);
     }
 
     void FlashlightOff()
     {
         sLight.SetActive(false);
-        aSource.PlayOneShot(off);
 
     }
 }

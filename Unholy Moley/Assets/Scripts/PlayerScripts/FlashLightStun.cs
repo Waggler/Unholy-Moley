@@ -12,14 +12,17 @@ public class FlashLightStun : MonoBehaviour
     public float fireRate = 15f;
     public bool stunned = false;
     public float lightRadius;
+    public bool flashLightUsed;
+    public bool flashLightOn;
 
 
-    private float nextTimeToFire = 0f;
+    //private float nextTimeToFire = 0f;
     public Camera fpsCam;
 
     public float LookPercentage;
 
     public GameObject Mole;
+    public GameObject FlashLight;
 
     RaycastHit hit;
 
@@ -67,12 +70,14 @@ public class FlashLightStun : MonoBehaviour
     void Update()
     {
         //var ray = fpsCam.ScreenPointToRay(Input.mousePosition);
+        flashLightUsed = Mole.GetComponent<MoleScript>().hasBeenStunned;
+        flashLightOn = FlashLight.GetComponent<Flashlight>().lightActive;
 
         //LookPercentage.ToString("F3");
-        if (Input.GetKeyDown("r") && Time.time >= nextTimeToFire)
+        if (Input.GetKeyDown("r") && flashLightUsed == false && flashLightOn == true)
         {
-            nextTimeToFire = Time.time + 1f / fireRate;
             Shoot();
+            
         }
     }
 

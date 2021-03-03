@@ -7,12 +7,15 @@ public class GunScript : MonoBehaviour
     public float impactForce = 30f;
     public float fireRate = 15f;
 
-
+    public bool equipGun;
     private float nextTimeToFire = 0f;
     public Camera fpsCam;
+
+    public GameObject killBox;
     void Update()
     {
-        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+        equipGun = killBox.GetComponent<KillBox>().hasGun;
+        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire && equipGun == true)
         {
             nextTimeToFire = Time.time + 1f / fireRate;
             Shoot();

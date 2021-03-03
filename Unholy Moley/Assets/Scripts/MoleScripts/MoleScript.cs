@@ -12,6 +12,7 @@ public class MoleScript : MonoBehaviour
     NavMeshAgent agent;
 
     public bool isStunned;
+    public bool hasBeenStunned = false;
     public float stunDuration;
 
     [Header("PatrollingWaypoints")]
@@ -32,6 +33,8 @@ public class MoleScript : MonoBehaviour
     private IEnumerator waitRoutine;
 
     Animator animator;
+
+    public GameObject killBox;
 
     // Start is called before the first frame update
     void Start()
@@ -60,8 +63,9 @@ public class MoleScript : MonoBehaviour
         if (isStunned == true)
         {
             StartCoroutine(stunRoutine);
+            hasBeenStunned = true;
 
-        }
+}
         /*if (lastDist == dist && agent.velocity.x == 0 && agent.velocity.z == 0)
         {
             agentAnimator.SetFloat("Speed", 0f);//make anim move
@@ -149,9 +153,11 @@ public class MoleScript : MonoBehaviour
 
     IEnumerator Stunned()
     {
+        killBox.gameObject.SetActive(false);
         agent.speed = 0f;
         animator.SetBool("Stunned", true);
         yield return new WaitForSeconds(stunDuration);// Waits for Duration
+        killBox.gameObject.SetActive(true);
         animator.SetBool("Stunned", false);
         agent.speed = startSpeed;
         isStunned = false;

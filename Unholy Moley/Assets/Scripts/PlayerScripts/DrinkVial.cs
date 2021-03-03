@@ -10,11 +10,16 @@ public class DrinkVial : MonoBehaviour
     public float duration = 3f;
     public float vialCount = 0f;
 
+    public bool equipGun;
+
+    public GameObject killBox;
+
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && vialCount > 0)
+        equipGun = killBox.GetComponent<KillBox>().hasGun;
+        if (Input.GetKeyDown(KeyCode.Q) && vialCount > 0 && equipGun == false)
         {
             StartCoroutine(Boost());
             vialCount -= 1;
@@ -38,7 +43,7 @@ public class DrinkVial : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Vial"))
+        if (other.CompareTag("Vial") && vialCount < 1)
         {
             vialCount += 1;
             //StartCoroutine (Boost(other));
