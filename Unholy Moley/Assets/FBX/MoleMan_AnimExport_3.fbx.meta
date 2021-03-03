@@ -18,6 +18,9 @@ ModelImporter:
   - first:
       74: 8161361046905295911
     second: metarig.001|Mole_Walk
+  - first:
+      74: 7331359211928092034
+    second: metarig.001|Mole_Walk (1)
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -47,11 +50,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: metarig.001|Mole_Idle
-      takeName: metarig.001|Mole_Idle
+      name: metarig.001|Mole_Walk (1)
+      takeName: metarig.001|Mole_Walk
       internalID: 0
       firstFrame: 0
-      lastFrame: 20
+      lastFrame: 39
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -186,7 +189,21 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.44713372
+        functionName: MoleyStep
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9923566
+        functionName: MoleyStep
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
