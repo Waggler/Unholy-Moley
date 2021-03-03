@@ -74,7 +74,7 @@ public class FlashLightStun : MonoBehaviour
         flashLightOn = FlashLight.GetComponent<Flashlight>().lightActive;
 
         //LookPercentage.ToString("F3");
-        if (Input.GetKeyDown("r") && flashLightUsed == false && flashLightOn == true)
+        if (Input.GetKey("f") && flashLightUsed == false && flashLightOn == true)
         {
             Shoot();
             

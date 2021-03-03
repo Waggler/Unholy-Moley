@@ -38,20 +38,18 @@ public class Flashlight : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.F) && PauseScript.gamePaused == false)
         {
-            lightActive = !lightActive;
+            FlashlightOn();
+            aSource.PlayOneShot(on);
+            lightActive = true;
 
-            if (lightActive)
-            {
-                FlashlightOn();
-                aSource.PlayOneShot(on);
-            }
-
-            if (!lightActive)
-            {
-                FlashlightOff();
-                aSource.PlayOneShot(off);
-            }
         }
+        else if (Input.GetKeyUp(KeyCode.F) && PauseScript.gamePaused == false )
+        {
+            FlashlightOff();
+            aSource.PlayOneShot(off);
+            lightActive = false;
+        }
+
     }
 
     // Turns flashlight on/off and plays button clip
