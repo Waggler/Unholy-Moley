@@ -17,6 +17,7 @@ public class Flashlight : MonoBehaviour
     public bool equipGun;
 
     public GameObject killBox;
+    public Animator animator;
 
     
 
@@ -41,6 +42,8 @@ public class Flashlight : MonoBehaviour
             FlashlightOn();
             aSource.PlayOneShot(on);
             lightActive = true;
+            animator.SetTrigger("PressButton");
+            animator.SetBool("FlashLightOn", true);
 
         }
         else if (Input.GetKeyUp(KeyCode.F) && PauseScript.gamePaused == false )
@@ -48,6 +51,8 @@ public class Flashlight : MonoBehaviour
             FlashlightOff();
             aSource.PlayOneShot(off);
             lightActive = false;
+            animator.SetTrigger("PressButton");
+            animator.SetBool("FlashLightOn", false);
         }
 
     }

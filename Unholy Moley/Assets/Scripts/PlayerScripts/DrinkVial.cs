@@ -13,17 +13,24 @@ public class DrinkVial : MonoBehaviour
     public bool equipGun;
 
     public GameObject killBox;
+    public Animator animator;
 
 
     // Update is called once per frame
     void Update()
     {
+        
         equipGun = killBox.GetComponent<KillBox>().hasGun;
         if (Input.GetKeyDown(KeyCode.Q) && vialCount > 0 && equipGun == false)
         {
             StartCoroutine(Boost());
             vialCount -= 1;
+            animator.SetFloat("Serums", 1f);
+            animator.SetBool("Chugging", true);
+            animator.SetTrigger("Chuggin");
         }
+        animator.SetFloat("Serums", 0f);
+        animator.SetBool("Chugging", false);
     }
     IEnumerator Boost()
     {
