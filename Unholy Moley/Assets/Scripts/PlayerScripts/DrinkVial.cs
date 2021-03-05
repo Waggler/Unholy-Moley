@@ -15,6 +15,9 @@ public class DrinkVial : MonoBehaviour
     public GameObject killBox;
     public Animator animator;
 
+    [Header("Audio")]
+    public AudioSource aSource;
+    public AudioClip glugGlug;
 
     // Update is called once per frame
     void Update()
@@ -28,6 +31,7 @@ public class DrinkVial : MonoBehaviour
             animator.SetFloat("Serums", 1f);
             animator.SetBool("Chugging", true);
             animator.SetTrigger("Chuggin");
+            aSource.PlayOneShot(glugGlug);
         }
         animator.SetFloat("Serums", 0f);
         animator.SetBool("Chugging", false);

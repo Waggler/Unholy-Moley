@@ -20,6 +20,13 @@ public class PlayerMovement : MonoBehaviour
 
     bool isGrounded;
 
+    [Header("Player Audio")]
+
+    public AudioSource voiceSource;
+
+    public AudioClip jump;
+    public AudioClip jumpVerb;
+
 
 
 
@@ -50,6 +57,8 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            voiceSource.PlayOneShot(jump);
+            voiceSource.PlayOneShot(jumpVerb, 0.5f);
         }
 
         // Handles Gravity
