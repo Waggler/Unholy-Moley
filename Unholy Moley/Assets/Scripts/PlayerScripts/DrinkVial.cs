@@ -14,27 +14,28 @@ public class DrinkVial : MonoBehaviour
 
     public GameObject killBox;
     public Animator animator;
+    public GameObject SerumArm;
 
-    [Header("Audio")]
-    public AudioSource aSource;
-    public AudioClip glugGlug;
 
     // Update is called once per frame
     void Update()
     {
-        
         equipGun = killBox.GetComponent<KillBox>().hasGun;
+        if (vialCount > 0)
+        {
+            SerumArm.gameObject.SetActive(true);
+        }
         if (Input.GetKeyDown(KeyCode.Q) && vialCount > 0 && equipGun == false)
         {
+            animator.SetFloat("Serums", 1f);
+            //animator.SetBool("Chugging", true);
+            animator.SetTrigger("Chuggin");
             StartCoroutine(Boost());
             vialCount -= 1;
-            animator.SetFloat("Serums", 1f);
-            animator.SetBool("Chugging", true);
-            animator.SetTrigger("Chuggin");
-            aSource.PlayOneShot(glugGlug);
+
         }
         animator.SetFloat("Serums", 0f);
-        animator.SetBool("Chugging", false);
+        //animator.SetBool("Chugging", false);
     }
     IEnumerator Boost()
     {
@@ -49,6 +50,7 @@ public class DrinkVial : MonoBehaviour
         yield return new WaitForSeconds(duration);// Waits for Duration
 
         stats.speed /= boostAmount;// Revert boosted speed
+        SerumArm.gameObject.SetActive(false);
 
         //Destroy(gameObject);// Destroy Speedboost vial
     }
