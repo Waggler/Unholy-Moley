@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5695183094360425003}
   - component: {fileID: 8036970506860872371}
-  - component: {fileID: 8435282884801299230}
   - component: {fileID: 6907883940423292106}
   m_Layer: 0
   m_Name: SpeedVial
@@ -26,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 957989970120466077}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.713, y: 4.361, z: -6.569}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -42,21 +41,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 957989970120466077}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &8435282884801299230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957989970120466077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 830d6eea9ce7f644ebe897c340757cf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boostAmount: 1.5
-  duration: 3
-  vialCount: 0
 --- !u!136 &6907883940423292106
 CapsuleCollider:
   m_ObjectHideFlags: 0

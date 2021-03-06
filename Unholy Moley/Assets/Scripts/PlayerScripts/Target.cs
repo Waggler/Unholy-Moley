@@ -10,6 +10,7 @@ public class Target : MonoBehaviour
     public bool stun = false;
 
     private float stunTimer;
+    //public GameObject Mole;
 
     private IEnumerator coRoutine;
     private void Update()
@@ -22,7 +23,8 @@ public class Target : MonoBehaviour
         health -= amount;
         if (health <= 0f)
         {
-            Die();
+            StartCoroutine(GetComponent<MoleScript>().Dead());
+            //Die();
         }
     }
     public void GetStun(bool stunned)
@@ -42,4 +44,3 @@ public class Target : MonoBehaviour
         stun = false;
     }
 }
-

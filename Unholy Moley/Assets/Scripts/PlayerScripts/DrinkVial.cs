@@ -15,7 +15,13 @@ public class DrinkVial : MonoBehaviour
     public GameObject killBox;
     public Animator animator;
     public GameObject SerumArm;
+    public GameObject SerumArmMesh;
+    public GameObject VialMesh;
 
+
+    [Header("Audio")]
+    public AudioClip DrinkSound;
+    public AudioSource audioSource;
 
     // Update is called once per frame
     void Update()
@@ -27,11 +33,14 @@ public class DrinkVial : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Q) && vialCount > 0 && equipGun == false)
         {
+            audioSource.PlayOneShot(DrinkSound);
             animator.SetFloat("Serums", 1f);
             //animator.SetBool("Chugging", true);
             animator.SetTrigger("Chuggin");
+            StartCoroutine(AnimShow());
             StartCoroutine(Boost());
             vialCount -= 1;
+            
 
         }
         animator.SetFloat("Serums", 0f);
@@ -50,15 +59,24 @@ public class DrinkVial : MonoBehaviour
         yield return new WaitForSeconds(duration);// Waits for Duration
 
         stats.speed /= boostAmount;// Revert boosted speed
+        SerumArmMesh.GetComponent<SkinnedMeshRenderer>().enabled = true;
+        VialMesh.GetComponent<MeshRenderer>().enabled = true;
         SerumArm.gameObject.SetActive(false);
 
         //Destroy(gameObject);// Destroy Speedboost vial
+    }
+    IEnumerator AnimShow()
+    {
+        yield return new WaitForSeconds(1);
+        VialMesh.GetComponent<MeshRenderer>().enabled = false;
+        SerumArmMesh.GetComponent<SkinnedMeshRenderer>().enabled = false;
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Vial") && vialCount < 1)
         {
             vialCount += 1;
+            Destroy(other.gameObject);
             //StartCoroutine (Boost(other));
         }
     }

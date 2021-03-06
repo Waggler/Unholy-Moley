@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class MoleScript : MonoBehaviour
 {
@@ -40,6 +41,12 @@ public class MoleScript : MonoBehaviour
     public GameObject killBox;
     public GameObject Player;
 
+    [Header("Audio")]
+    public AudioSource moleVoice;
+    public AudioClip chaseScream;
+    public AudioClip breathing;
+    bool moleScreamed = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,7 +78,7 @@ public class MoleScript : MonoBehaviour
             StartCoroutine(stunRoutine);
             hasBeenStunned = true;
 
-}
+        }
         /*if (lastDist == dist && agent.velocity.x == 0 && agent.velocity.z == 0)
         {
             agentAnimator.SetFloat("Speed", 0f);//make anim move
@@ -91,6 +98,12 @@ public class MoleScript : MonoBehaviour
         {
             agent.SetDestination(target.position);
 
+            if (moleScreamed == false)
+            {
+                moleVoice.PlayOneShot(chaseScream);
+                moleScreamed = true;
+            } 
+
             if (distance <= agent.stoppingDistance)
             {
                 FaceTarget();
@@ -104,7 +117,7 @@ public class MoleScript : MonoBehaviour
                 StartCoroutine(waitRoutine);
                 GotoNextPoint();
             }
-                
+
         }
     } // END Update
 
@@ -178,6 +191,14 @@ public class MoleScript : MonoBehaviour
         animator.SetBool("Stunned", false);
         agent.speed = startSpeed;
         isStunned = false;
+    }
+    public IEnumerator Dead()
+    {
+        killBox.gameObject.SetActive(false);
+        agent.speed = 0f;
+        animator.SetBool("MoleDead", true);
+        yield return new WaitForSeconds(1);// Waits for Duration
+        SceneManager.LoadScene("Win Screen");
     }
 
     IEnumerator Wait()
