@@ -286,17 +286,17 @@ PrefabInstance:
     - target: {fileID: 2191366154635747400, guid: efe7b48679177d84b8e9f2ccd3f49509,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30.075611
+      value: -149.48201
       objectReference: {fileID: 0}
     - target: {fileID: 2191366154635747400, guid: efe7b48679177d84b8e9f2ccd3f49509,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.644504
+      value: 3.7623415
       objectReference: {fileID: 0}
     - target: {fileID: 2191366154635747400, guid: efe7b48679177d84b8e9f2ccd3f49509,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20.608913
+      value: 116.06511
       objectReference: {fileID: 0}
     - target: {fileID: 2191366154635747400, guid: efe7b48679177d84b8e9f2ccd3f49509,
         type: 3}
@@ -306,7 +306,7 @@ PrefabInstance:
     - target: {fileID: 2191366154635747400, guid: efe7b48679177d84b8e9f2ccd3f49509,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2191366154635747400, guid: efe7b48679177d84b8e9f2ccd3f49509,
         type: 3}
@@ -341,7 +341,7 @@ PrefabInstance:
     - target: {fileID: 4586100936168625080, guid: efe7b48679177d84b8e9f2ccd3f49509,
         type: 3}
       propertyPath: m_Name
-      value: Lightbulb Variant (1)
+      value: Lightbulb Variant (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efe7b48679177d84b8e9f2ccd3f49509, type: 3}
