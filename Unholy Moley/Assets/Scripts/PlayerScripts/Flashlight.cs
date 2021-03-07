@@ -55,6 +55,12 @@ public class Flashlight : MonoBehaviour
             animator.SetBool("FlashLightOn", false);
         }
 
+        if (Input.GetKey(KeyCode.P))
+        {
+            lightActive = false;
+            FlashlightOff();
+        }
+
     }
 
     // Turns flashlight on/off and plays button clip

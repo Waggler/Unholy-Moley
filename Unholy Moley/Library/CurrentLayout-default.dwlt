@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 1
-  controlID: 16
+  controlID: 95
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 17
+  controlID: 96
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 18
+  controlID: 97
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 19
+  controlID: 70
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -279,7 +279,7 @@ MonoBehaviour:
   - {fileID: 19}
   - {fileID: 20}
   m_Selected: 0
-  m_LastSelected: 2
+  m_LastSelected: 1
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -426,9 +426,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: dc2f0000
       m_LastClickedID: 0
-      m_ExpandedIDs: d0f0ffff
+      m_ExpandedIDs: f8faffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -489,9 +489,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -9.764476, y: 4.371463, z: -13.015356}
+    m_Target: {x: 9.139174, y: 4.0604033, z: -8.431702}
     speed: 2
-    m_Value: {x: -9.764476, y: 4.371463, z: -13.015356}
+    m_Value: {x: 9.139174, y: 4.0604033, z: -8.431702}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -538,9 +538,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.033970933, y: -0.7472623, z: 0.038427114, w: 0.662607}
+    m_Target: {x: -0.06114074, y: -0.62279207, z: 0.048808843, w: -0.7785173}
     speed: 2
-    m_Value: {x: 0.03396958, y: -0.74723256, z: 0.038425583, w: 0.6625806}
+    m_Value: {x: -0.061138306, y: -0.62276727, z: 0.0488069, w: -0.7784863}
   m_Size:
     m_Target: 5.364313
     speed: 2
@@ -749,21 +749,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Audio/SFX
+    - Assets/Scripts/PlayerScripts
     m_Globs: []
   m_ViewMode: 1
   m_StartGridSize: 58
   m_LastFolders:
-  - Assets/Audio/SFX
+  - Assets/Scripts/PlayerScripts
   m_LastFoldersGridSize: 58
   m_LastProjectPath: C:\Users\khdav\Desktop\Starter_Repo\Unholy-Moley\Unholy Moley
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: d8a30000
-    m_LastClickedID: 41944
-    m_ExpandedIDs: 00000000aaa30000aca30000aea30000b0a30000b2a30000b4a30000b6a3000000ca9a3b
+    scrollPos: {x: 0, y: 199}
+    m_SelectedIDs: baa20000
+    m_LastClickedID: 41658
+    m_ExpandedIDs: 000000004ca200004ea2000050a2000052a2000054a2000056a2000058a2000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -791,7 +791,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000aaa30000aca30000aea30000b0a30000b2a30000b4a30000b6a30000
+    m_ExpandedIDs: 000000004ca200004ea2000050a2000052a2000054a2000056a2000058a20000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -935,7 +935,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 507
+  m_LastVerticalScrollValue: 0
   m_AssetGUID: 
   m_InstanceID: 0
   m_LockTracker:
