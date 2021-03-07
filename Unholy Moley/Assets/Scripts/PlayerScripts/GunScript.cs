@@ -12,18 +12,38 @@ public class GunScript : MonoBehaviour
     public Camera fpsCam;
 
     public GameObject killBox;
+    public GameObject laserBeam;
     public Animator animator;
 
     public AudioClip ShootSound;
-    AudioSource audioSource;
+    public AudioSource audioSource;
     void Update()
     {
         equipGun = killBox.GetComponent<KillBox>().hasGun;
+        if (Input.GetButton("Fire1"))
+        {
+            laserBeam.SetActive(true);
+            //audioSource.Play();
+        }
+        else
+        {
+            laserBeam.SetActive(false);
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            audioSource.Play();
+        }
+        else if (Input.GetButtonUp("Fire1"))
+        {
+            audioSource.Stop();
+        }
+
         if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire && equipGun == true)
         {
             nextTimeToFire = Time.time + 1f / fireRate;
             animator.SetBool("LeftClickDown", true);
-            //audioSource.PlayOneShot(ShootSound, 0.7F);
+            
             Shoot();
             //animator.SetBool("IsFiring", true);
         }

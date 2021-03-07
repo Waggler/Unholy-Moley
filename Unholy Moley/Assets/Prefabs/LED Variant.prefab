@@ -43,13 +43,13 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8632076, g: 1, b: 0.9547852, a: 1}
-  m_Intensity: 4.37
-  m_Range: 8.1
+  m_Intensity: 3.62
+  m_Range: 11.09
   m_SpotAngle: 70
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -102,12 +102,12 @@ PrefabInstance:
     - target: {fileID: 2670630426737854870, guid: 5b5981d205c3f544a97f92f63b99e45c,
         type: 3}
       propertyPath: m_Name
-      value: LED
+      value: LED (2)
       objectReference: {fileID: 0}
     - target: {fileID: 4500812381387760978, guid: 5b5981d205c3f544a97f92f63b99e45c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -45.55502
+      value: -57.55502
       objectReference: {fileID: 0}
     - target: {fileID: 4500812381387760978, guid: 5b5981d205c3f544a97f92f63b99e45c,
         type: 3}

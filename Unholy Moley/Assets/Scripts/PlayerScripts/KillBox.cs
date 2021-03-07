@@ -11,6 +11,7 @@ public class KillBox : MonoBehaviour
     public GameObject Arm2;
     public GameObject Vial;
     public Animator Anim;
+    //public GameObject laserParticle; 
 
     public bool hasGun;
     public bool isSafe = true;
