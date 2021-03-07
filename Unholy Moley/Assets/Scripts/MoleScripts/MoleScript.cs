@@ -24,6 +24,7 @@ public class MoleScript : MonoBehaviour
     public Transform[] points;
     private int destPoint = 0;
     public float waitDuration;
+    private float startSpeed;
 
     [Header("PatrollingRandom")]
     public Vector3 walkPoint;
@@ -32,20 +33,22 @@ public class MoleScript : MonoBehaviour
     public int numPatrolPoints;
     private Transform[] patrolPoints;
 
-    private float startSpeed;
-    private IEnumerator stunRoutine;
-    private IEnumerator waitRoutine;
+    [Header("Audio")]
+    public AudioSource moleVoice;
+    public AudioClip chaseScream;
+    public AudioClip breathing;
+    public AudioClip moleShrink;
+    bool moleScreamed = false;
 
     public Animator animator;
 
     public GameObject killBox;
     public GameObject Player;
 
-    [Header("Audio")]
-    public AudioSource moleVoice;
-    public AudioClip chaseScream;
-    public AudioClip breathing;
-    bool moleScreamed = false;
+
+    private IEnumerator stunRoutine;
+    private IEnumerator waitRoutine;
+
 
     // Start is called before the first frame update
     void Start()
@@ -69,49 +72,45 @@ public class MoleScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distance = Vector3.Distance(target.position, transform.position);
-        isStunned = GetComponent<Target>().stun;
-        isPlayerSafe = Player.GetComponent<KillBox>().isSafe;
-        stunRoutine = Stunned();
-        if (isStunned == true)
+        float distance = Vector3.Distance(target.position, transform.position);// find the distance between the mole and the player at all times
+        isStunned = GetComponent<Target>().stun;// get the stun bool from target script
+        isPlayerSafe = Player.GetComponent<KillBox>().isSafe;// make sure the player is outside of the safe starting area
+        stunRoutine = Stunned();// check to see if the mole has been stunned
+
+        if (isStunned == true)// if stunned start the stun coroutine and make sure the Mole can't be stunned again
         {
             StartCoroutine(stunRoutine);
             hasBeenStunned = true;
 
         }
-        /*if (lastDist == dist && agent.velocity.x == 0 && agent.velocity.z == 0)
-        {
-            agentAnimator.SetFloat("Speed", 0f);//make anim move
-            movementActive = false;
-        }*/
-        if (distance <= lookRadius && isHunting == false && isPlayerSafe == false)
+        if (distance <= lookRadius && isHunting == false && isPlayerSafe == false)// if the player is withing the search radius of the mole and is not safe, the mole starts hunting
         {
             agent.SetDestination(target.position);
             isHunting = true;
 
-            if (distance <= agent.stoppingDistance)
+            if (distance <= agent.stoppingDistance)// if the mole is close to player turn to face them
             {
                 FaceTarget();
             }
         }
-        else if (distance <= huntRadius && isHunting == true && isPlayerSafe == false)
+        else if (distance <= huntRadius && isHunting == true && isPlayerSafe == false)// if the player is withing the hunt radius of the mole and is not safe, the mole continues hunting
         {
             agent.SetDestination(target.position);
 
-            if (moleScreamed == false)
+            if (moleScreamed == false)// play the mole scream once when he first starts hunting the player
             {
                 moleVoice.PlayOneShot(chaseScream);
                 moleScreamed = true;
             } 
 
-            if (distance <= agent.stoppingDistance)
+            if (distance <= agent.stoppingDistance)// if the mole is close to player turn to face them
             {
                 FaceTarget();
             }
         }
         else
         {
-            if (!agent.pathPending && agent.remainingDistance < 5f)
+            if (!agent.pathPending && agent.remainingDistance < 5f)// if the mole can not hunt the player, he continues his patrol
             {
                 waitRoutine = Wait();
                 StartCoroutine(waitRoutine);
@@ -137,6 +136,7 @@ public class MoleScript : MonoBehaviour
         destPoint = (destPoint + 1) % points.Length;
     }//end GoToNextPoint
 
+
     //This method Makes the Mole Randomly Patrol. Currently it is not used
     private void Patroling()
     {
@@ -159,6 +159,7 @@ public class MoleScript : MonoBehaviour
         }//end if
     }//end Patrolling
 
+
     //This method creates a random walkpoint within a set distance of the Mole. Currently it is not used
     private void SearchWalkPoint()
     {
@@ -173,6 +174,7 @@ public class MoleScript : MonoBehaviour
         }//end if
     }//end SearchWalkPoint
 
+
     //This method causes to Mole to face the player when in close range
     void FaceTarget()
     {
@@ -181,6 +183,8 @@ public class MoleScript : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }//end FaceTarget
 
+
+    //This coroutine causes 
     IEnumerator Stunned()
     {
         killBox.gameObject.SetActive(false);
@@ -191,22 +195,25 @@ public class MoleScript : MonoBehaviour
         animator.SetBool("Stunned", false);
         agent.speed = startSpeed;
         isStunned = false;
-    }
+    }// END Stunned
+
+
     public IEnumerator Dead()
     {
         killBox.gameObject.SetActive(false);
         agent.speed = 0f;
+        moleVoice.PlayOneShot(moleShrink);
         animator.SetBool("MoleDead", true);
         yield return new WaitForSeconds(1);// Waits for Duration
         SceneManager.LoadScene("Win Screen");
-    }
+    }// END Dead
 
     IEnumerator Wait()
     {
         //animator.SetBool("IsMoving", false);
         yield return new WaitForSeconds(waitDuration);// Waits for Duration
         animator.SetBool("IsMoving", true);
-    }
+    }// END Wait
 
 
     /*Old Waypoint Script
