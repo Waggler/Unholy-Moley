@@ -6,15 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class MoleScript : MonoBehaviour
 {
-
+    // Handles Chasing the player
     [Header("ChasingPlayer")]
-    public float lookRadius = 10f;
-    public float huntRadius = 60f;
-    public bool isHunting = false;
-    public bool isPlayerSafe;
+    public float lookRadius = 10f;// Radius of Moley's sight before he sees the player
+    public float huntRadius = 60f;// Radius of Moley's sight after he sees the player
+    public bool isHunting = false;// bool that checks if Moley is hunting
+    public bool isPlayerSafe;// bool that checks if player is in a safe zone
+    public GameObject killBox;
+    public GameObject Player;
     private Transform target;
     private NavMeshAgent agent;
 
+    [Header("StuneStateSettings")]
     public bool isStunned;
     public bool hasBeenStunned = false;
     public float stunDuration;
@@ -40,12 +43,10 @@ public class MoleScript : MonoBehaviour
     public AudioClip moleShrink;
     bool moleScreamed = false;
 
+    [Header("Animation")]
     public Animator animator;
 
-    public GameObject killBox;
-    public GameObject Player;
-
-
+    // Coroutines
     private IEnumerator stunRoutine;
     private IEnumerator waitRoutine;
 
@@ -61,8 +62,6 @@ public class MoleScript : MonoBehaviour
         animator.SetBool("IsMoving", true);
 
         // Disabling auto-braking allows for continuous movement
-        // between points (ie, the agent doesn't slow down as it
-        // approaches a destination point).
         agent.autoBraking = false;
 
         GotoNextPoint();
@@ -116,7 +115,6 @@ public class MoleScript : MonoBehaviour
                 StartCoroutine(waitRoutine);
                 GotoNextPoint();
             }
-
         }
     } // END Update
 
@@ -137,44 +135,6 @@ public class MoleScript : MonoBehaviour
     }//end GoToNextPoint
 
 
-    //This method Makes the Mole Randomly Patrol. Currently it is not used
-    private void Patroling()
-    {
-        if (!walkPointSet)
-        {
-            SearchWalkPoint();
-        }//end if
-
-        if (walkPointSet)
-        {
-            agent.SetDestination(walkPoint);
-        }//end if
-
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
-
-        //Walkpoint Reached
-        if (distanceToWalkPoint.magnitude < 5f)
-        {
-            walkPointSet = false;
-        }//end if
-    }//end Patrolling
-
-
-    //This method creates a random walkpoint within a set distance of the Mole. Currently it is not used
-    private void SearchWalkPoint()
-    {
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
-
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-        {
-            walkPointSet = true;
-        }//end if
-    }//end SearchWalkPoint
-
-
     //This method causes to Mole to face the player when in close range
     void FaceTarget()
     {
@@ -184,13 +144,14 @@ public class MoleScript : MonoBehaviour
     }//end FaceTarget
 
 
-    //This coroutine causes 
+    //This coroutine causes the Mole to be stunned
     IEnumerator Stunned()
     {
         killBox.gameObject.SetActive(false);
         agent.speed = 0f;
         animator.SetBool("Stunned", true);
-        yield return new WaitForSeconds(stunDuration);// Waits for Duration
+        yield return new WaitForSeconds(stunDuration);
+
         killBox.gameObject.SetActive(true);
         animator.SetBool("Stunned", false);
         agent.speed = startSpeed;
@@ -198,33 +159,26 @@ public class MoleScript : MonoBehaviour
     }// END Stunned
 
 
+    //This coroutine causes the mole to die and wins the game
     public IEnumerator Dead()
     {
         killBox.gameObject.SetActive(false);
         agent.speed = 0f;
         moleVoice.PlayOneShot(moleShrink);
         animator.SetBool("MoleDead", true);
-        yield return new WaitForSeconds(1);// Waits for Duration
+
+        yield return new WaitForSeconds(1);
+
         SceneManager.LoadScene("Win Screen");
     }// END Dead
 
+
     IEnumerator Wait()
     {
-        //animator.SetBool("IsMoving", false);
         yield return new WaitForSeconds(waitDuration);// Waits for Duration
         animator.SetBool("IsMoving", true);
     }// END Wait
 
-
-    /*Old Waypoint Script
- * private void MoveToPoint()
-{
-    for (int i = 0; i <= patrolPoints.Length; i++)
-    {
-        agent.SetDestination(patrolPoints[i].transform.position);
-    }
-
-}*///End MoveToPoint
 
     //This method shows the Mole's detection radius in Editor
     void OnDrawGizmosSelected()
